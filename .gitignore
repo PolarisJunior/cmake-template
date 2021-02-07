@@ -1,3 +1,37 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# CMake Specific
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -9,3 +43,15 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+# Ninja Specific
+.ninja_deps
+.ninja_log
+build.ninja
+rules.ninja
+
+# Specific to vscode
+.vscode
+
+# Specific to this template repository
+bin
