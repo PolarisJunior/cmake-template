@@ -1,6 +1,9 @@
 
 # Add executables by specifying the name of the test without the .cpp extension
-set(ALL_TESTS example)
+set(
+    ALL_TESTS 
+    example
+)
 
 function(add_test_binary TEST_NAME)
     set(TEST_TARGET ${TEST_NAME})
