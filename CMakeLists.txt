@@ -20,7 +20,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY bin)
 
 set(SRC_DIR src)
 
-option(TEST_ENABLED "" ON)
+find_package(GTest QUIET)
+option(TEST_ENABLED "" ${GTEST_FOUND})
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
