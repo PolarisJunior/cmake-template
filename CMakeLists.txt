@@ -1,7 +1,11 @@
-cmake_minimum_required(VERSION 3.15.2)
+cmake_minimum_required(VERSION 3.15)
 
 # Change `MY_PROJECT_NAME` to the name of your project
-project(MY_PROJECT_NAME)
+project(
+    MY_PROJECT_NAME 
+    VERSION 0.0.0
+    LANGUAGES CXX
+)
 
 set(LIB_NAME ${PROJECT_NAME})
 set(BIN_NAME ${PROJECT_NAME}bin)
@@ -11,8 +15,16 @@ set(BIN_OUTPUT_NAME ${PROJECT_NAME})
 
 set(ALL_TARGETS ${LIB_NAME} ${BIN_NAME})
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+# Link this 'library' to set the c++ standard / compile-time options requested
+add_library(project_options INTERFACE)
+target_compile_features(project_options INTERFACE cxx_std_17)
+
+# Link this 'library' to use the warnings specified in CompilerWarnings.cmake
+add_library(project_warnings INTERFACE)
+
+# standard compiler warnings
+include(cmake/CompilerWarnings.cmake)
+set_project_warnings(project_warnings)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY lib)
@@ -43,6 +55,8 @@ target_link_libraries(
     ${LIB_NAME}
     PRIVATE
     Threads::Threads
+    project_options
+    project_warnings
 )
 
 add_executable(
@@ -55,6 +69,8 @@ target_link_libraries(
     ${BIN_NAME}
     PRIVATE
     ${LIB_NAME}
+    project_options
+    project_warnings
 )
 
 set_target_properties(
