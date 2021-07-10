@@ -38,6 +38,12 @@ option(TEST_ENABLED "" ${GTEST_FOUND})
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
+option(USE_CONAN "" ON)
+if(${USE_CONAN})
+    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+    conan_basic_setup()
+endif()
+
 add_compile_options(-Wall -Wextra)
 
 add_library(
@@ -49,12 +55,14 @@ target_include_directories(
     ${LIB_NAME}
     PUBLIC
     include
+    ${CONAN_INCLUDE_DIRS}
 )
 
 target_link_libraries(
     ${LIB_NAME}
     PRIVATE
     Threads::Threads
+    ${CONAN_LIBS}
     project_options
     project_warnings
 )

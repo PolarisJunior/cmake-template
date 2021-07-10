@@ -55,3 +55,4 @@ rules.ninja
 
 # Specific to this template repository
 bin
+build
