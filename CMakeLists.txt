@@ -38,7 +38,7 @@ option(TEST_ENABLED "" ${GTEST_FOUND})
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-option(USE_CONAN "" ON)
+option(USE_CONAN "" OFF)
 if(${USE_CONAN})
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     conan_basic_setup()
