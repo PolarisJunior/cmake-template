@@ -44,8 +44,6 @@ if(${USE_CONAN})
     conan_basic_setup()
 endif()
 
-add_compile_options(-Wall -Wextra)
-
 add_library(
     ${LIB_NAME}
     # Path to the project's source files go here
@@ -86,14 +84,6 @@ set_target_properties(
     PROPERTIES
     OUTPUT_NAME ${BIN_OUTPUT_NAME}
 )
-
-foreach(TARGET_NAME ${ALL_TARGETS})
-    target_compile_options(
-        ${TARGET_NAME}
-        PRIVATE
-        $<$<COMPILE_LANGUAGE:CXX>:-Weffc++>
-    )
-endforeach()
 
 if (${TEST_ENABLED})
     enable_testing()
