@@ -32,9 +32,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY bin)
 
 set(SRC_DIR src)
 
-find_package(GTest QUIET)
-option(TEST_ENABLED "" ${GTEST_FOUND})
-
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
@@ -43,6 +40,9 @@ if(${USE_CONAN})
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     conan_basic_setup()
 endif()
+
+find_package(GTest QUIET)
+option(TEST_ENABLED "" ${GTEST_FOUND})
 
 add_library(
     ${LIB_NAME}
